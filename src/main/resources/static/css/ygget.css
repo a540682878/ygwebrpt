@@ -1,0 +1,9 @@
+.login{
+    width: 200px;
+    height: 80px;
+
+}
+
+.yggbtn{
+    position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>YGG</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/ygget.css">
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+</head>
+<body>
+
+<!--出入提取的top片段-->
+<div th:replace="commons/top::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--引入提取的侧边栏片段-->
+        <div th:replace="commons/side::sidebar"></div>
+
+        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 side">
+            <h3>财务XXX报表</h3>
+            <a href="/download"><button type="button" class="btn btn-success">生成excel</button></a>
+
+            <!--            pageInfo.list  遍历pageInfo内所有的信息-->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">Money</th>
+                    <th scope="col">年龄</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="bx:${baoxiao.list}">
+                    <th name="id" scope="row" th:text="${bx.id}">1</th>
+                    <td name="name" th:text="${bx.name}">Mark</td>
+                    <td name="money" th:text="${bx.money}">Otto</td>
+                    <td name="age" th:text="${bx.age}">@mdo</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-md-6">
+                当前第<span th:text="${baoxiao.pageNum}"></span> 页.总共 <span th:text="${baoxiao.pages}"></span>
+                页.一共 <span th:text="${baoxiao.total}"></span> 条记录
+            </div>
+            <!--分页按钮-->
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <!--首页按钮  -->
+                    <li class="page-item">
+                        <a href="/" th:href="@{/ygs/baoxiao/list/(pn=1)}" aria-label="Previous" class="page-link">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <!--上一页按钮   hasPreviousPage表示前一页有内容    pn代表controller内调用方法的参数，表示当前页数-->
+                    <!--pageinfo.pageNum表示当前页-->
+                    <li class="page-item">
+                        <a href="#" th:if="${baoxiao.hasPreviousPage}" th:href="@{/ygs/baoxiao/list/(pn=${(baoxiao.pageNum)-1})}" class="page-link"
+                           aria-label="Previous">
+                            <span aria-hidden="true">上一页</span>
+                        </a>
+                    </li>
+                    <!--遍历navigatepageNums，显示按钮列表；navigatepageNums表示所有导航页号-->
+                    <!--th:class="${pageInfo.pageNum==page}?'active'"表示，当前页面时，页码高亮显示-->
+                    <li th:each="page:${baoxiao.navigatepageNums}" th:class="${baoxiao.pageNum==page}?'page-item active':'page-item'">
+                        <a href="#" th:if="${page==baoxiao.pageNum}" class="page-link">
+                            <span th:text="${page}"></span>
+                        </a>
+                        <!--如果不是当前页面，按钮的href就等于/?pageNum=${page}-->
+                        <!--例：点击第5页时，地址为http://localhost:8080/?pn=5-->
+                        <a th:href="@{/ygs/baoxiao/list/(pn=${page})}" th:if="${page!=baoxiao.pageNum}" class="page-link">
+                            <span th:text="${page}"></span>
+                        </a>
+                    </li>
+                    <!--下一页按钮 hasNextPage表示是否有下一页-->
+                    <li class="page-item">
+                        <a href="#" th:if="${baoxiao.hasNextPage}" th:href="@{/ygs/baoxiao/list/(pn=${(baoxiao.pageNum)+1})}" class="page-link"
+                           aria-label="Previous">
+                            <span aria-hidden="true">下一页</span>
+                        </a>
+                    </li>
+                    <!--尾页按钮 pageInfo.pages表示导航页码数-->
+                    <li class="page-item">
+                        <a href="#" th:href="@{/ygs/baoxiao/list/(pn=${baoxiao.pages})}" aria-label="Next" class="page-link">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"
+        integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

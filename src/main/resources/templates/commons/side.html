@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>YGG</title>
+</head>
+<body>
+
+<!--抽取侧边栏-->
+<div class="col-lg-2 col-md-12 col-sm-12 col-xs-12" th:fragment="sidebar">
+    <div class="accordion " id="accordionExample">
+        <!--YGS-->
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        YGS tiptop 报表系统
+                    </button>
+                </h2>
+            </div>
+            <!--.collapse 类用于指定一个折叠元素 (实例中的 <div>); 点击按钮后会在隐藏与显示之间切换。-->
+            <!--控制内容的隐藏与显示，需要在 <a> 或 <button> 元素上添加 data-toggle="collapse" 属性。 data-target="#id" 属性是对应折叠的内容 -->
+            <!--默认情况下，折叠的内容是隐藏的，你可以添加 .show 类让内容默认显示  即calss="collapse show"-->
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                 th:class="${section!=null}?'collapse show':'collapse'" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="/ygs/baoxiao" th:class="${section=='baoxiao'}?'list-group-item active':'list-group-item'">财务XXX报表</a>
+                        <a  href="/ygs/liaojian" th:class="${section=='liaojian'}?'list-group-item active':'list-group-item'">采购XXX报表</span></a>
+                        <a href="#" class="list-group-item">生管XXX报表</a>
+                        <a href="#" class="list-group-item">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--YGL-->
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        YGL tiptop 报表系统
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</span></a>
+                        <a href="#" class="list-group-item">生管XXX报表</a>
+                        <a href="#" class="list-group-item">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--YGB-->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        YGB tiptop 报表系统
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</span></a>
+                        <a href="#" class="list-group-item">生管XXX报表</a>
+                        <a href="#" class="list-group-item">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--YGW-->
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        YGW tiptop 报表系统
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</span></a>
+                        <a href="#" class="list-group-item">生管XXX报表</a>
+                        <a href="#" class="list-group-item">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--YGW-->
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        YGW tiptop 报表系统
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">财务XXX报表</a>
+                        <a href="#" class="list-group-item">采购XXX报表 <span class="badge">14</span></a>
+                        <a href="#" class="list-group-item">生管XXX报表 <span class="badge">2</span></a>
+                        <a href="#" class="list-group-item">财务XXX报表 </a>
+                        <a href="#" class="list-group-item">采购XXX报表</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

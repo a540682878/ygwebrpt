@@ -19,24 +19,35 @@
 
         <!--引入提取的侧边栏片段-->
         <div th:replace="commons/side::sidebar"></div>
-        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 side">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 side">
             <h3 th:text="${sectionName}">报表名字</h3>
             <hr>
-            <a href="/ygs/baoxiao/list" th:href="@{'/ygs/'+${section}+'/list'}"><button type="button" class="btn btn-primary">生成报表</button></a>
-            <a href="#"><button type="button" class="btn btn-success">生成excel</button></a>
-        </div>
+            <form action="#" th:action="@{'/ygs/'+${section}+'/list'}">
+                <input type="date" name="dates" value="2020-01-02">
+
+                <button type="submit" class="btn btn-primary">生成报表</button>
+
+            </form>
+            <form action="/ygs/baoxiao/download">
+                <input type="date" name="dates" value="2020-01-02">
+                <button type="submit" class="btn btn-success">生成excel</button>
+
+            </form>
+
+
         </div>
     </div>
+</div>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"
-            integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"
+        integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

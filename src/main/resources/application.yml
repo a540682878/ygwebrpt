@@ -13,11 +13,10 @@ spring:
     mode: HTML
     servlet:
       content-type: text/html
-
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.2.109:3307/community?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://10.10.20.49:3307/community?useUnicode=true&characterEncoding=utf-8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     initialization-mode: always
     # schema:
@@ -42,6 +41,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
     # schema:
     # - classpath:department.sql
+
 pagehelper:
   #指定数据库
   helper-dialect: mysql
@@ -56,3 +56,12 @@ pagehelper:
   #  page-size-zero: true
   params: count=countSql
 
+#spring:
+#  jpa:
+#    database: oracle
+#    show-sql: true
+#  datasource:
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@ip:1521:dev
+#    username: ***
+#    password: ***

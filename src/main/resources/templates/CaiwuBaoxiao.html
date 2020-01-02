@@ -19,11 +19,21 @@
         <!--引入提取的侧边栏片段-->
         <div th:replace="commons/side::sidebar"></div>
 
-        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 side">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 side">
             <h3>财务XXX报表</h3>
-            <a href="/download"><button type="button" class="btn btn-success">生成excel</button></a>
 
-            <!--            pageInfo.list  遍历pageInfo内所有的信息-->
+            <form action="#" th:action="@{/ygs/baoxiao/list}">
+                <input type="date" name="dates" value="2020-01-02">
+                <button type="submit" class="btn btn-primary">生成报表</button>
+            </form>
+            <form action="#" th:action="@{/ygs/baoxiao/download}">
+                <input type="date" name="dates" value="2020-01-02">
+
+                <button type="submit" class="btn btn-success">生成excel</button>
+            </form>
+
+
+
             <table class="table">
                 <thead>
                 <tr>
@@ -31,6 +41,7 @@
                     <th scope="col">姓名</th>
                     <th scope="col">Money</th>
                     <th scope="col">年龄</th>
+                    <th scope="col">date</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,6 +50,7 @@
                     <td name="name" th:text="${bx.name}">Mark</td>
                     <td name="money" th:text="${bx.money}">Otto</td>
                     <td name="age" th:text="${bx.age}">@mdo</td>
+                    <td name="date" th:text="${bx.date}">@mdo</td>
                 </tr>
                 </tbody>
             </table>

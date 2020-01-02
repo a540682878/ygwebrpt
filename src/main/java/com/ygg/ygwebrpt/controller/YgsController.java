@@ -6,13 +6,16 @@ import com.github.pagehelper.PageInfo;
 import com.ygg.ygwebrpt.model.Baoxiao;
 import com.ygg.ygwebrpt.serivce.BaoxiaoService;
 import com.ygg.ygwebrpt.serivce.LiaojianService;
+import com.ygg.ygwebrpt.until.DateConverter;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 @Controller
 public class YgsController {
@@ -22,7 +25,7 @@ public class YgsController {
     @Autowired
     private LiaojianService liaojianService;
 
-
+    //到ygs页面
     @GetMapping("/ygs/{action}")
     public String ygs(@PathVariable(name = "action")String action,
                       Model model){
@@ -37,26 +40,34 @@ public class YgsController {
         return "Ygs";
     }
 
-    @GetMapping("/ygs/baoxiao/list")
+    //报销报表
+    @RequestMapping("/ygs/baoxiao/list")
     public String baoxiaoList( @RequestParam(defaultValue = "1") Integer pn,
                                @RequestParam(defaultValue = "5") Integer pageSize,
+                               @RequestParam(name = "dates")Date dates,
                                Model model){
-        //PN:(pageNum)的缩写，表示当前的页数；pageSize表示每页显示的数量
-        Page p = PageHelper.startPage(pn, pageSize);
-        //调用questionServices.list()方法,得到List<Question>
-        //PageInfo<Question>内集合了所有的question信息即分页功能
-        //navigatePages代表有有5个分页导航按钮
-        PageInfo info = new PageInfo<>(baoxiaoService.baoxiaoList(), 5);
+        System.out.println("date = "+dates);
 
+        //日期格式转换
+        Date time =new Date();
+        time = dates;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(time);
+
+        //分页及传资料到页面
+        Page p = PageHelper.startPage(pn, pageSize);
+        PageInfo info = new PageInfo<>(baoxiaoService.baoxiaoListByDate(date), 5);
         model.addAttribute("baoxiao",info);
 
         return "CaiwuBaoxiao";
     }
 
+    //料件报表
     @GetMapping("/ygs/liaojian/list")
     public String liaojianList( @RequestParam(defaultValue = "1") Integer pn,
                                @RequestParam(defaultValue = "5") Integer pageSize,
-                               Model model){
+
+                                Model model){
         Page p = PageHelper.startPage(pn, pageSize);
         PageInfo info = new PageInfo<>(liaojianService.liaojianList(), 5);
 
